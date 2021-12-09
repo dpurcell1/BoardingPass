@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class GenerateBoardingPass {
-    public static void main(String[] args) {
+    public static void generatePass() {
         Set<String> departureTimes = new HashSet<>();
         Set<String> arrivalTimes = new HashSet<>();
         GetInformation g = new GetInformation();
@@ -39,7 +39,7 @@ public class GenerateBoardingPass {
                 g.setAge(age);
                 if (age < 18) {
                     System.out.println("We're sorry, but you'll need to be at least 18 years old to book a flight with us."
-                    + "Have a nice day!");
+                            + "Have a nice day!");
                     complete = true;
                 } else {
                     System.out.printf("We're happy to have you today, %s %s! Just a few more moments and you'll be all booked.\n", prefix, name);
@@ -83,7 +83,7 @@ public class GenerateBoardingPass {
             List<String> departureTimesList = new ArrayList<>(departureTimes);
 
             System.out.printf("For flights departing from %s on %s, these are the flight times that we currently have available.\n"
-            + "Please use selections 1-5 to select your preferred time. \n", origin, departureDate);
+                    + "Please use selections 1-5 to select your preferred time. \n", origin, departureDate);
             System.out.println(departureTimesList);
 
             try {
@@ -112,28 +112,25 @@ public class GenerateBoardingPass {
 
 
             System.out.printf("Okay, for the flight you've specified, the estimated arrival time to %s will be %s\n", destination, arrivalTime);
-            System.out.printf("Just to review, we're about to confirm a flight booking for %s %s, departing from %s at %s on %s and arriving in %s at %s \n"
-            + "Everything look good? (Y/N)\n", prefix, name, origin, departureTime, departureDate, destination, arrivalTime);
+            System.out.printf("Just to review, we're about to confirm a flight booking for %s %s, departing from %s at %s on %s and arriving in %s at %s " +
+                    "Everything look good? (Y/N)\n", prefix, name, origin, departureTime, departureDate, destination, arrivalTime);
             confirmation = keyboard.nextLine();
 
             if (confirmation.equalsIgnoreCase("Y")) {
                 boardingPassNumber = r.nextInt(999999999) + 1;
                 ticketPrice = g.totalPrice(age, gender);
-                System.out.printf("Your boarding pass number is %d, and your ticket price comes to a total of $%d.", boardingPassNumber, ticketPrice);
+                System.out.printf("Your boarding pass number is %d, and your ticket price comes to a total of $%d.\n", boardingPassNumber, ticketPrice);
                 System.out.println("Just a moment while we finish generating your boarding pass.");
                 f.createPass(boardingPassNumber, departureDate, origin, destination, arrivalTime, departureTime, name, email, phoneNumber, gender, age, ticketPrice);
 
             } else {
                 System.out.println("Oops, sorry about that. Let's start over fresh.");
-                complete = true;
             }
-
-
-
+            keyboard.close();
+            complete = true;
         }
-
-
-
-
+    }
+    public static void main(String[] args) {
+       generatePass();
     }
 }
