@@ -2,11 +2,11 @@ import java.util.*;
 import java.io.*;
 
 public class GenerateBoardingPass {
+
     public static void generatePass() {
         Set<String> departureTimes = new HashSet<>();
         Set<String> arrivalTimes = new HashSet<>();
         GetInformation g = new GetInformation();
-        CreateFile f = new CreateFile();
         int boardingPassNumber, ticketPrice, amPmRand, arrivalTimeRand;
         int choice = 0;
         int age = 0;
@@ -120,8 +120,8 @@ public class GenerateBoardingPass {
                 boardingPassNumber = r.nextInt(999999999) + 1;
                 ticketPrice = g.totalPrice(age, gender);
                 System.out.printf("Your boarding pass number is %d, and your ticket price comes to a total of $%d.\n", boardingPassNumber, ticketPrice);
-                System.out.println("Just a moment while we finish generating your boarding pass.");
-                f.createPass(boardingPassNumber, departureDate, origin, destination, arrivalTime, departureTime, name, email, phoneNumber, gender, age, ticketPrice);
+                System.out.println("Just a moment while we finish generating your boarding pass...");
+                g.createPass(boardingPassNumber, departureDate, origin, destination, arrivalTime, departureTime, name, email, phoneNumber, gender, age, ticketPrice);
 
             } else {
                 System.out.println("Oops, sorry about that. Let's start over fresh.");
@@ -130,7 +130,8 @@ public class GenerateBoardingPass {
             complete = true;
         }
     }
+
     public static void main(String[] args) {
-       generatePass();
+        generatePass();
     }
 }
