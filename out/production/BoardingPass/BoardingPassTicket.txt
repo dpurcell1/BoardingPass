@@ -1,9 +1,0 @@
-ID #: 561218072  Name: Alina Ken   Gender: Female  Age: 61  Date: 12-12-1995
-Phone #: 345-234-255  Email: Alinken75@gmail.com
-Origin: LA  Destination: Chicago
-Departure Time: 4:00p.m.  Arrival Time: 7:00p.m.  Price: 300
-
-ID #: 203594949  Name: Alina Ken  Gender: Female  Age: 23  Date: 12-12-2021
-Phone #: 234-353-456  Email: alinken@gmail.com
-Origin: LA  Destination: Chicago
-Departure Time: 11:00a.m.  Arrival Time: 5:00a.m.  Price: 750

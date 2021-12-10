@@ -1,8 +1,6 @@
 import java.util.*;
-import java.io.*;
 
 public class GenerateBoardingPass {
-
     public static void generatePass() {
         Set<String> departureTimes = new HashSet<>();
         Set<String> arrivalTimes = new HashSet<>();
@@ -32,41 +30,27 @@ public class GenerateBoardingPass {
             }
 
             System.out.println("And could you also provide us your age? ");
-
-            try {
-                age = keyboard.nextInt();
-                keyboard.nextLine();
-                g.setAge(age);
-                if (age < 18) {
-                    System.out.println("We're sorry, but you'll need to be at least 18 years old to book a flight with us."
-                            + "Have a nice day!");
-                    complete = true;
-                } else {
-                    System.out.printf("We're happy to have you today, %s %s! Just a few more moments and you'll be all booked.\n", prefix, name);
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Please enter a valid age.");
-                complete = true;
-            }
+            age = keyboard.nextInt();
+            g.setAge(age);
 
             System.out.println("What's a good phone number to use in case we need to contact you? (ex. 555-555-5555)");
-            phoneNumber = keyboard.nextLine();
+            phoneNumber = keyboard.next();
             g.setPhoneNum(phoneNumber);
 
             System.out.println("We'll also need a valid email address. Don't worry, we promise not to spam you.");
-            email = keyboard.nextLine();
+            email = keyboard.next();
             g.setEmail(email);
 
             System.out.println("So far so good! Now, where will you be flying to?");
-            destination = keyboard.nextLine();
+            destination = keyboard.next();
             g.setDestination(destination);
 
             System.out.println("When do you plan on departing? (ex. 01-01-1999)");
-            departureDate = keyboard.nextLine();
+            departureDate = keyboard.next();
             g.setDate(departureDate);
 
             System.out.println("And where will you be departing from?");
-            origin = keyboard.nextLine();
+            origin = keyboard.next();
             g.setOrigin(origin);
 
             while (departureTimes.size() < 5) {
@@ -117,10 +101,10 @@ public class GenerateBoardingPass {
             confirmation = keyboard.nextLine();
 
             if (confirmation.equalsIgnoreCase("Y")) {
-                boardingPassNumber = r.nextInt(999999999) + 1;
+                boardingPassNumber = g.getPass();
                 ticketPrice = g.totalPrice(age, gender);
                 System.out.printf("Your boarding pass number is %d, and your ticket price comes to a total of $%d.\n", boardingPassNumber, ticketPrice);
-                System.out.println("Just a moment while we finish generating your boarding pass...");
+                System.out.println("Just a moment while we finish generating your boarding pass..." + "\n");
                 g.createPass(boardingPassNumber, departureDate, origin, destination, arrivalTime, departureTime, name, email, phoneNumber, gender, age, ticketPrice);
 
             } else {
@@ -129,6 +113,7 @@ public class GenerateBoardingPass {
             keyboard.close();
             complete = true;
         }
+
     }
 
     public static void main(String[] args) {
